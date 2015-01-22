@@ -29,12 +29,6 @@ function demo_replicate_replicate() {
   drupal_set_message(t('Hello world!'));
 
 
-
-
-
-
-
-
 }
 /**
  * Replicate the entity corresponding to the type and id passed in argument and save it.
@@ -67,6 +61,13 @@ function replicate_entity_by_id($entity_type, $id) {
  *   else FALSE.
  */
 function replicate_entity($entity_type, $entity) {
+	//
+	// The goal here is to create a cloned entity. First we will read the information from the 
+	// Entity that is being targeted and store it in an Object(?). Next we will take that Entity and do // an entity Create with the entity passed into it.  This will require us to modify the 
+	// drush_entity_create() function to allow for a passed in object.  The infos will be read
+	// out of the passed in Object and then will be created again with a new nid or enity id of that type
+	// Need to veriy if nodes will also be able to work in this.
+	//
   $clone = replicate_clone_entity($entity_type, $entity);
   if ($clone) {
     entity_save($entity_type, $clone);
@@ -78,4 +79,67 @@ function replicate_entity($entity_type, $entity) {
   }
 
   return FALSE;
+}
+
+/**
+ * Create an entity by the given type.
+ *
+ * @param $entity_type
+ *   The entity type to create.
+ * @param $file
+ *   The (optional) source file to create entities from.
+ */
+function drush_entity_create($entity_type = NULL, $file = NULL) {
+  if (!$entity_type) {
+    drush_set_error('DRUSH_ENTITY_CREATE_ERROR', dt('You must specify an entity type'));
+    return;
+  }
+
+  _drush_entity_check_type($entity_type);
+
+  if (empty($file)) {
+    $entity_class = isset($entity_info['entity class']) ? $entity_info['entity class'] : 'stdClass';
+    $entity = new $entity_class();
+    // Create defaults on the entity object.
+    if (isset($entity_info['drush']['defaults'])) {
+      foreach ($entity_info['drush']['defaults'] as $key => $value) {
+        $entity->$key = $value;
+      }
+    }
+    $entity_json = _drush_entity_edit_string(drush_json_encode($entity));
+  }
+  else if ($file === '-' || file_exists($file)) {
+    if ($file === '-') {
+      $entity_json = stream_get_contents(STDIN);
+    }
+    else {
+      drush_log("Reading file $file");
+      $entity_json = file_get_contents($file);
+    }
+  }
+  else {
+    drush_set_error('DRUSH_ENTITY_CREATE_ERROR', dt('Improper input/args'));
+  }
+
+  if (!empty($entity_json)) {
+    $entities = drush_json_decode($entity_json);
+    // The file contains an array of entity objects.
+		if (is_array($entities)) {
+			foreach ($entities as $entity_array) {
+				$entity = (object) $entity_array;
+				_drush_entity_create_entity($entity_type, $entity);
+			}
+		}
+    // The files has just one entity object.
+		else {
+			$entity = $entities;
+			_drush_entity_create_entity($entity_type, $entity);
+		}
+  }
+	else if ($file === '-') {
+		drush_set_error('DRUSH_NO_STDIN', dt('stdin empty!'));
+	}
+	else {
+		drush_set_error('DRUSH_EMPTY_FILE', dt('Empty file!'));
+	}
 }
