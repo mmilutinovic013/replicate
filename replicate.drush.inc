@@ -62,8 +62,9 @@ function replicate_entity_by_id($entity_type, $id) {
  */
 function replicate_entity($entity_type, $entity) {
 	//
-	// The goal here is to create a cloned entity. First we will read the information from the 
-	// Entity that is being targeted and store it in an Object(?). Next we will take that Entity and do // an entity Create with the entity passed into it.  This will require us to modify the 
+	// TODO MJM: The goal here is to create a cloned entity. First we will read the information from the 
+	// Entity that is being targeted and store it in an Object(?). Next we will take that Entity and do 
+	// an entity Create with the entity passed into it.  This will require us to modify the 
 	// drush_entity_create() function to allow for a passed in object.  The infos will be read
 	// out of the passed in Object and then will be created again with a new nid or enity id of that type
 	// Need to veriy if nodes will also be able to work in this.
