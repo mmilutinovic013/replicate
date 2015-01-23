@@ -144,20 +144,3 @@ function drush_entity_create($entity_type = NULL, $file = NULL) {
 		drush_set_error('DRUSH_EMPTY_FILE', dt('Empty file!'));
 	}
 }
-
-/**
- * Prevent D5/6 from invoking wrong types
- *
- * @param $type
- *   An entity type name to check.
- */
-function _drush_entity_check_type($type) {
-  switch (drush_drupal_major_version()) {
-    case 5:
-    case 6:
-      $entity_info = _drush_entity_get_info();
-      if (!isset($entity_info[$type])) {
-        drush_set_error('DRUSH_ERROR', dt("No support for $type for drupal core < 7.x"));
-      }
-  }
-}
