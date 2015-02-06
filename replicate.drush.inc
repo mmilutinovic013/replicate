@@ -42,7 +42,7 @@ function demo_replicate_replicate() {
  *
  * @see replicate_entity()
  */
-function replicate_entity_by_id($entity_type, $id) {
+function replicate_drush_entity_by_id($entity_type, $id) {
   $original = entity_load_single($entity_type, $id);
   return replicate_drush_entity($entity_type, $original);
 }
