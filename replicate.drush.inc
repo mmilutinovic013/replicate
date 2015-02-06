@@ -34,8 +34,23 @@ function drush_replicate_drush_command() {
 /**
  * Callback for the drush-demo-command command
  */
-function drush_replicate_replicate() {
-  drupal_set_message(t('Hello world!'));
+/**
+ * Callback function for drush my-command. 
+ * Callback is called by using drush_hook_command() where
+ * hook is the name of the module (MYMODULE) and command is the name of
+ * the Drush command with all "-" characters converted to "_" characters (my_command)
+ *
+ * @param $arg1
+ *   An optional argument
+ */
+function drush_replicate_drush_replicate_drush_command($arg1 = NULL) {
+  //check if the argument was passed in and just print it out
+  if (isset($arg1)) {
+   drush_print($arg1);
+  }
+ 
+  //log to the command line with an OK status
+  drush_log('Running my-command', 'ok');
 }
 /**
  * Replicate the entity corresponding to the type and id passed in argument and save it.
