@@ -1,5 +1,14 @@
 <?php
 /**
+ * Implements hook_drush_help().
+ */
+function replicate_drush_help($command) {
+  switch ($command) {
+    case 'drush:my-command':
+      return dt('Run my command');
+  }
+}
+/**
  * Implements hook_drush_command().
  */
 function drush_replicate_drush_command() {
