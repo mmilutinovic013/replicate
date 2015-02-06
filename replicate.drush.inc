@@ -27,8 +27,6 @@ function replicate_drush_command() {
  */
 function demo_replicate_replicate() {
   drupal_set_message(t('Hello world!'));
-
-
 }
 /**
  * Replicate the entity corresponding to the type and id passed in argument and save it.
@@ -46,7 +44,7 @@ function demo_replicate_replicate() {
  */
 function replicate_entity_by_id($entity_type, $id) {
   $original = entity_load_single($entity_type, $id);
-  return replicate_entity($entity_type, $original);
+  return replicate_drush_entity($entity_type, $original);
 }
 /**
  * Replicate the entity passed in argument and save it.
@@ -60,7 +58,7 @@ function replicate_entity_by_id($entity_type, $id) {
  *   The newly created entity id if the clone has been created and saved,
  *   else FALSE.
  */
-function replicate_entity($entity_type, $entity) {
+function replicate_drush_entity($entity_type, $entity) {
 	//
 	// TODO MJM: The goal here is to create a cloned entity. First we will read the information from the 
 	// Entity that is being targeted and store it in an Object(?). Next we will take that Entity and do 
@@ -71,6 +69,8 @@ function replicate_entity($entity_type, $entity) {
 	//
   $clone = replicate_clone_entity($entity_type, $entity);
   if ($clone) {
+    //$entityids = entity_extract_ids($entity_type, $entity);
+    //$lastentityid = array_pop($entityids);
     entity_save($entity_type, $clone);
       list($entity_id) = entity_extract_ids($entity_type, $clone);
 
