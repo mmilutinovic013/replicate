@@ -2,7 +2,7 @@
 /**
  * Implements hook_drush_command().
  */
-function replicate_drush_command() {
+function drush_replicate_drush_command() {
 
   $items['replicate'] = array(
     'description' => 'Replicate an Enitity via Drush!',
@@ -25,7 +25,7 @@ function replicate_drush_command() {
 /**
  * Callback for the drush-demo-command command
  */
-function demo_replicate_replicate() {
+function drush_replicate_replicate() {
   drupal_set_message(t('Hello world!'));
 }
 /**
@@ -42,7 +42,7 @@ function demo_replicate_replicate() {
  *
  * @see replicate_entity()
  */
-function replicate_drush_entity_by_id($entity_type, $id) {
+function drush_replicate_drush_entity_by_id($entity_type, $id) {
   $original = entity_load_single($entity_type, $id);
   return replicate_drush_entity($entity_type, $original);
 }
@@ -58,7 +58,7 @@ function replicate_drush_entity_by_id($entity_type, $id) {
  *   The newly created entity id if the clone has been created and saved,
  *   else FALSE.
  */
-function replicate_drush_entity($entity_type, $entity) {
+function drush_replicate_drush_entity($entity_type, $entity) {
 	//
 	// TODO MJM: The goal here is to create a cloned entity. First we will read the information from the 
 	// Entity that is being targeted and store it in an Object(?). Next we will take that Entity and do 
@@ -90,7 +90,7 @@ function replicate_drush_entity($entity_type, $entity) {
  * @param $file
  *   The (optional) source file to create entities from.
  */
-function drush_entity_create($entity_type = NULL, $file = NULL) {
+function drush_replicte_drush_entity_create($entity_type = NULL, $file = NULL) {
   if (!$entity_type) {
     drush_set_error('DRUSH_ENTITY_CREATE_ERROR', dt('You must specify an entity type'));
     return;
