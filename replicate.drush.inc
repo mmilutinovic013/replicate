@@ -3,7 +3,7 @@
 /**
  * Implements hook_drush_command().
  */
-function drush_demo_drush_command() {
+function replicate_drush_command() {
 
   $items['drush-demo-command'] = array(
     'description' => 'Demonstrate how Drush commands work.',
@@ -16,7 +16,7 @@ function drush_demo_drush_command() {
 /**
  * Callback for the drush-demo-command command
  */
-function drush_drush_demo_command() {
+function replicate_demo_command() {
   demo_drush_print_statement();
 }
 
