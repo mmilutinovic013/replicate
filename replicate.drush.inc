@@ -1,16 +1,35 @@
 <?php
+
 /**
- * Implements hook_drush_help().
+ * Implements hook_drush_command().
  */
+function drush_demo_drush_command() {
+
+  $items['drush-demo-command'] = array(
+    'description' => 'Demonstrate how Drush commands work.',
+    'aliases' => array('ddc'),
+  );
+
+  return $items;
+}
+
+/**
+ * Callback for the drush-demo-command command
+ */
+function drush_drush_demo_command() {
+  demo_drush_print_statement();
+}
+
 function replicate_drush_help($command) {
   switch ($command) {
     case 'drush:my-command':
       return dt('Run my command');
   }
 }
-/**
+/*
  * Implements hook_drush_command().
- */
+ 
+
 function drush_replicate_drush_command() {
   $items = array();
   $items['replicate'] = array(
@@ -31,6 +50,7 @@ function drush_replicate_drush_command() {
   );
   return $items;
 }
+*/
 /**
  * Callback for the drush-demo-command command
  */
@@ -168,3 +188,4 @@ function drush_replicte_drush_entity_create($entity_type = NULL, $file = NULL) {
 		drush_set_error('DRUSH_EMPTY_FILE', dt('Empty file!'));
 	}
 }
+
