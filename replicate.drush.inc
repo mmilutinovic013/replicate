@@ -16,7 +16,7 @@ function replicate_drush_command() {
 /**
  * Callback for the drush-demo-command command
  */
-function drush_replicate_demo_command() {
+function drush_replicate_drush_demo_command() {
   demo_drush_print_statement();
 }
 
