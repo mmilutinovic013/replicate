@@ -16,11 +16,11 @@ function replicate_drush_command() {
 /**
  * Callback for the drush-demo-command command
  */
-function replicate_demo_command() {
+function drush_replicate_demo_command() {
   demo_drush_print_statement();
 }
 
-function replicate_drush_help($command) {
+function drush_replicate_drush_help($command) {
   switch ($command) {
     case 'drush:my-command':
       return dt('Run my command');
