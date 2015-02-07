@@ -12,7 +12,7 @@ function replicate_drush_help($command) {
  * Implements hook_drush_command().
  */
 function drush_replicate_drush_command() {
-
+  $items = array();
   $items['replicate'] = array(
     'description' => 'Replicate an Enitity via Drush!',
     'arguments' => array(
