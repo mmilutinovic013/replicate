@@ -26,6 +26,9 @@ function drush_replicate_drush_help($command) {
       return dt('Run my command');
   }
 }
+function replicate_print_statement() {
+  drupal_set_message(t('Hello world!'));
+}
 /*
  * Implements hook_drush_command().
  
