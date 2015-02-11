@@ -57,7 +57,7 @@ function drush_replicate_drush_entity($entity_type, $entity) {
       }
     }
   }
-  drush_log('Entity does not exist! Please enter a valid entity type and number!');
+  drush_print('Entity does not exist! Please enter a valid entity type and number!');
   return FALSE;
 }
 
