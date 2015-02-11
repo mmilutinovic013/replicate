@@ -5,7 +5,7 @@
  */
 function replicate_drush_command() {
   $items = array();
-  $items['replicate'] = array(
+  $items['drush-replicate'] = array(
     'description' => 'Replicate an Enitity via Drush!',
     'arguments' => array(
       'entity-type' => dt('Type of Entity (eg. Node) that you wish to replicate'),
@@ -13,7 +13,7 @@ function replicate_drush_command() {
     'arguments' => array(
       'id-number' => dt('ID value of the specified Entity Type (eg. NodeID'),
     ),
-    'aliases' => array('rep'),
+    'aliases' => array('drep'),
     'examples' => array(
       'drush replicate node 1' =>
         'Node 1 is replicated via drush using full command',
