@@ -44,25 +44,27 @@ function drush_replicate_drush_entity_by_id($entity_type, $id) {
 }
 
 function drush_replicate_drush_entity($entity_type, $entity) {
-  $clone = drush_replicate_replicate_clone_entity($entity_type, $entity);
-  if ($clone) {
-    //$entityids = entity_extract_ids($entity_type, $entity);
-    //$lastentityid = array_pop($entityids);
-    entity_save($entity_type, $clone);
-      list($entity_id) = entity_extract_ids($entity_type, $clone);
+  if($entity){
+    $clone = drush_replicate_replicate_clone_entity($entity_type, $entity);
+    if ($clone) {
+      //$entityids = entity_extract_ids($entity_type, $entity);
+      //$lastentityid = array_pop($entityids);
+      entity_save($entity_type, $clone);
+        list($entity_id) = entity_extract_ids($entity_type, $clone);
 
-    if (isset($entity_id)) {
-      return $entity_id;
+      if (isset($entity_id)) {
+        return $entity_id;
+      }
     }
   }
-  else{
-    drush_error($msg = 'Entity does not exist! Please enter a valid entity type and number!');
-  }
+  drush_error($msg = 'Entity does not exist! Please enter a valid entity type and number!');
   return FALSE;
 }
 
 function drush_replicate_replicate_clone_entity($entity_type, $entity) {
   $clone = clone($entity);
+      drush_error($msg = 'Entity does not exist! Please enter a valid entity type and number!');
+
 
   if ($clone) {
     // Let other modules manage the cleaning of the entity.
