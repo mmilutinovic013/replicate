@@ -102,7 +102,7 @@ function drush_replicate_drush_replicate_drush_command($arg1 = NULL) {
  */
 function drush_replicate_drush_entity_by_id($entity_type, $id) {
   $original = entity_load_single($entity_type, $id);
-  return replicate_drush_entity($entity_type, $original);
+  return drush_replicate_drush_entity($entity_type, $original);
 }
 /**
  * Replicate the entity passed in argument and save it.
