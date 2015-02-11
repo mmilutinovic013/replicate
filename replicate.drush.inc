@@ -141,7 +141,7 @@ function drush_replicate_drush_entity($entity_type, $entity) {
 }
 
 function drush_replicate_replicate_clone_entity($entity_type, $entity) {
-  $clone = clone $entity;
+  $clone = clone($entity);
 
   if ($clone) {
     // Let other modules manage the cleaning of the entity.
