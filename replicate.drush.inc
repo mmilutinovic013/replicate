@@ -125,7 +125,7 @@ function drush_replicate_drush_entity($entity_type, $entity) {
 	// out of the passed in Object and then will be created again with a new nid or enity id of that type
 	// Need to veriy if nodes will also be able to work in this.
 	//
-  $clone = replicate_clone_entity($entity_type, $entity);
+  $clone = drush_replicate_replicate_clone_entity($entity_type, $entity);
   if ($clone) {
     //$entityids = entity_extract_ids($entity_type, $entity);
     //$lastentityid = array_pop($entityids);
@@ -138,6 +138,29 @@ function drush_replicate_drush_entity($entity_type, $entity) {
   }
 
   return FALSE;
+}
+
+function drush_replicate_replicate_clone_entity($entity_type, $entity) {
+  $clone = clone $entity;
+
+  if ($clone) {
+    // Let other modules manage the cleaning of the entity.
+    foreach (module_implements('replicate_entity_' . $entity_type) as $module) {
+      $function = $module . '_replicate_entity_' . $entity_type;
+      $function($clone);
+    }
+
+    // Set the entity as new entity.
+    $clone->is_new = TRUE;
+
+    // Let other modules do special actions on each field.
+    replicate_clone_fields($clone, $entity_type);
+
+    // Let other modules do special actions on the global entity.
+    drupal_alter('replicate_entity', $clone, $entity_type, $entity);
+  }
+
+  return $clone;
 }
 
 /**
