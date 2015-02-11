@@ -57,14 +57,12 @@ function drush_replicate_drush_entity($entity_type, $entity) {
       }
     }
   }
-  drush_error($msg = 'Entity does not exist! Please enter a valid entity type and number!');
+  drush_log($message = 'Entity does not exist! Please enter a valid entity type and number!');
   return FALSE;
 }
 
 function drush_replicate_replicate_clone_entity($entity_type, $entity) {
   $clone = clone($entity);
-      drush_error($msg = 'Entity does not exist! Please enter a valid entity type and number!');
-
 
   if ($clone) {
     // Let other modules manage the cleaning of the entity.
