@@ -59,7 +59,8 @@ function drush_replicate_drush_entity($entity_type, $entity) {
 
       if (isset($entity_id)) {
         $returnvalue = "Congratulations you have created a new " + $entity_type + " of id " + $entity_id;
-        return $returnvalue;
+        drush_print($returnvalue);
+        return $returnvalue; // do we need this?
       }
     }
   }
