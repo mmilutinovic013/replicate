@@ -40,6 +40,10 @@ function drush_replicate_drush_help($command) {
 
 function drush_replicate_drush_entity_by_id($entity_type, $id) {
   $original = entity_load_single($entity_type, $id);
+  if(!$original){
+    drush_print('Entity does not exist! Please enter a valid entity type and number!');
+    return FALSE;
+  }
   return drush_replicate_drush_entity($entity_type, $original);
 }
 
