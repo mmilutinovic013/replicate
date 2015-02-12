@@ -58,7 +58,8 @@ function drush_replicate_drush_entity($entity_type, $entity) {
         list($entity_id) = entity_extract_ids($entity_type, $clone);
 
       if (isset($entity_id)) {
-        return $entity_id;
+        $returnvalue = "Congratulations you have created a new " + $entity_type + " of id " + $entity_id;
+        return $returnvalue;
       }
     }
   }
