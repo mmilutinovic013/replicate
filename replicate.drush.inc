@@ -44,7 +44,7 @@ function drush_replicate_drush_entity_by_id($entity_type, $id) {
 }
 
 function drush_replicate_drush_entity($entity_type, $entity) {
-  if($entity){
+  if($entity && $entity_type){
     $clone = drush_replicate_replicate_clone_entity($entity_type, $entity);
     if ($clone) {
       //$entityids = entity_extract_ids($entity_type, $entity);
