@@ -35,12 +35,12 @@ function drush_replicate_drush_help($command) {
 
 function drush_replicate_drush_entity_by_id($entity_type, $id) {
   if(!$entity_type || !$id){
-      drush_log(dt('Missing Argument: Please enter both a valid entity type and number!'), 'error');
+      drush_print('Missing Argument: Please enter both a valid entity type and number!');
   }
   if(!$info = entity_get_info($entity_type)){
-      return drush_log(dt('Entity does not exist! Please enter a valid entity type and number!'));
+       drush_print('Entity does not exist! Please enter a valid entity type and number!');
 
-      //return FALSE;
+      return FALSE;
   }
   $original = entity_load_single($entity_type, $id);
 
@@ -60,9 +60,9 @@ function drush_replicate_drush_entity($entity_type, $entity) {
       }
     }
   }
-   return drush_log(dt('Missing Argument: Please enter both a valid entity type and number!'), 'error');
+  drush_print('Missing Argument: Please enter both a valid entity type and number!');
 
-  //return FALSE;
+  return FALSE;
 }
 
 function drush_replicate_replicate_clone_entity($entity_type, $entity) {
