@@ -36,9 +36,9 @@ function drush_replicate_drush_help($command) {
 function drush_replicate_drush_entity_by_id($entity_type, $id) {
   
   if(!$info = entity_get_info($entity_type)){
-      drush_set_error('Entity does not exist! Please enter a valid entity type and number!');
+      return drush_print('Entity does not exist! Please enter a valid entity type and number!');
 
-      return FALSE;
+      //return FALSE;
   }
   $original = entity_load_single($entity_type, $id);
 
@@ -54,13 +54,13 @@ function drush_replicate_drush_entity($entity_type, $entity) {
       if (isset($entity_id)) {
         $returnvalue = "Congratulations your cloned " . $entity_type . " is " . $entity_type . " " . $entity_id;
 
-        return drush_set_error($returnvalue);
+        return drush_print($returnvalue);
       }
     }
   }
-  drush_set_error('Entity does not exist! Please enter a valid entity type and number!');
+   return drush_print('Entity does not exist! Please enter a valid entity type and number!');
 
-  return FALSE;
+  //return FALSE;
 }
 
 function drush_replicate_replicate_clone_entity($entity_type, $entity) {
