@@ -43,7 +43,7 @@ function drush_replicate_drush_entity_by_id($entity_type, $id) {
 
   return drush_replicate_drush_entity($entity_type, $original);
   }
-  return "Entity does not exist! Please enter a valid entity type and number!";
+  return "Missing Arguments! Please enter a valid entity type and number!";
   
 }
 
