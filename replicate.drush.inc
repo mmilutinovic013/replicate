@@ -35,7 +35,7 @@ function drush_replicate_drush_help($command) {
 
 function drush_replicate_drush_entity_by_id($entity_type, $id) {
   echo $entity_type;
-  if (!$info = entity_get_info($entity_type)|| !$entity_type || !$id || gettype($entity_type) != "string") {         
+  if (!$info = entity_get_info($entity_type)|| is_null($entity_type) || is_null($id) || gettype($entity_type)){         
     drush_print('Entity does not exist! Please enter a valid entity type and number!');    
     return FALSE;
   }
