@@ -32,10 +32,15 @@ function drush_replicate_drush_help($command) {
   }
 }
 
-function drush_replicate_drush_entity_by_id($entity_type, $id) {
+function drush_replicate_drush_entity_by_id($entity_type, $id = false) {
   if (!$info = entity_get_info($entity_type)) {
-    drush_print('Entity does not exist! Please enter a valid entity type and number!');
-    return FALSE;
+    if(func_num_args() != 2){
+        return "Missing Arguments! Please enter a valid entity type and number!";
+    }
+    else{
+      drush_print('Entity does not exist! Please enter a valid entity type and number!');
+      return FALSE;
+    }
   }
   if(func_num_args() == 2){
     $original = entity_load_single($entity_type, $id);
