@@ -13,7 +13,7 @@ function replicate_drush_command() {
     'arguments' => array(
       'id-number' => dt('ID value of the specified Entity Type (eg. NodeID'),
     ),
-    'aliases' => array('drep'),
+    'aliases' => array('rep'),
     'examples' => array(
       'drush replicate node 1' =>
         'Node 1 is replicated via drush using full command',
