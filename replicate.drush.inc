@@ -43,11 +43,13 @@ function drush_replicate_drush_entity_by_id($entity_type, $id) {
   }
   if(func_num_args() == 2){
     $original = entity_load_single($entity_type, $id);
-    return drush_replicate_drush_entity($entity_type, $original);
+    return replicate_entity_by_id($entity_type, $original);
+
   }
   return "Missing Arguments! Please enter a valid entity type and number!";
-}
 
+}
+/*
 function drush_replicate_drush_entity($entity_type, $entity) {
   if($entity && $entity_type){
     $clone = drush_replicate_replicate_clone_entity($entity_type, $entity);
@@ -85,3 +87,4 @@ function drush_replicate_replicate_clone_entity($entity_type, $entity) {
 
   return $clone;
 }
+*/
