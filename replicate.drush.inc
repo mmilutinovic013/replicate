@@ -33,23 +33,22 @@ function replicate_drush_help($command) {
 
 function drush_replicate_drush_entity_by_id($entity_type, $id) {
   if (!$info = entity_get_info($entity_type)) {
-      if(func_num_args() != 2){
-          return "Missing Arguments! Please enter a valid entity type and number!";
-      }
-      else{
-        drush_print('Entity does not exist! Please enter a valid entity type and number!');
-        return FALSE;
-      }
-    
-    if(func_num_args() == 2){
-      $entity_id = replicate_entity_by_id($entity_type, $id);
-        if (isset($entity_id)) {
-          $returnvalue = "Congratulations your cloned " . $entity_type . " is " . $entity_type . " " . $entity_id;
-          return drush_print($returnvalue);
-        }
-        else{
-            return "Missing Arguments! Please enter a valid entity type and number!";
-        }
+    if(func_num_args() != 2){
+        return "Missing Arguments! Please enter a valid entity type and number!";
+    }
+    else{
+      drush_print('Entity does not exist! Please enter a valid entity type and number!');
+      return FALSE;
+    }
+  }
+  if(func_num_args() == 2){
+    $entity_id = replicate_entity_by_id($entity_type, $id);
+    if (isset($entity_id)) {
+      $returnvalue = "Congratulations your cloned " . $entity_type . " is " . $entity_type . " " . $entity_id;
+      return drush_print($returnvalue);
+    }
+    else{
+        return "Missing Arguments! Please enter a valid entity type and number!";
     }
   }
   return "Missing Arguments! Please enter a valid entity type and number!";
