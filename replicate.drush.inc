@@ -9,9 +9,8 @@ function replicate_drush_command() {
     'description' => 'Replicate an Enitity via Drush!',
     'arguments' => array(
       'entity-type' => dt('Type of Entity (eg. Node) that you wish to replicate'),
-    ),
-    'arguments' => array(
       'id-number' => dt('ID value of the specified Entity Type (eg. NodeID'),
+
     ),
     'aliases' => array('rep', 'replicate'),
     'examples' => array(
