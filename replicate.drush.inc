@@ -38,9 +38,13 @@ function drush_replicate_drush_entity_by_id($entity_type, $id) {
     drush_print('Entity does not exist! Please enter a valid entity type and number!');
     return FALSE;
   }
-  $original = entity_load_single($entity_type, $id);
+  if(func_num_args() == 2){
+    $original = entity_load_single($entity_type, $id);
 
   return drush_replicate_drush_entity($entity_type, $original);
+  }
+  return "ham";
+  
 }
 
 function drush_replicate_drush_entity($entity_type, $entity) {
