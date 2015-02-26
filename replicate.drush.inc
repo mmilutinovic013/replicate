@@ -32,7 +32,7 @@ function drush_replicate_drush_help($command) {
   }
 }
 
-function drush_replicate_drush_entity_by_id($entity_type, $id = false) {
+function drush_replicate_drush_entity_by_id($entity_type, $id) {
   if (!$info = entity_get_info($entity_type)) {
     if(func_num_args() != 2){
         return "Missing Arguments! Please enter a valid entity type and number!";
