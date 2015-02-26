@@ -31,7 +31,18 @@ function replicate_drush_help($command) {
   }
 }
 
-function drush_replicate_drush_entity_by_id($entity_type, $id) {
+function drush_replicate_drush_entity_by_id($entity_type = NULL, $id = NULL) {
+  if (!is_null($entity_type) && !is_null($id) ){
+    $entity_id = replicate_entity_by_id($entity_type, $id);
+    if (isset($entity_id)) {
+      $returnvalue = "Congratulations your cloned " . $entity_type . " is " . $entity_type . " " . $entity_id;
+      return drush_print($returnvalue);
+    }
+  }
+  return "Missing Arguments! Please enter a valid entity type and number!";
+
+
+/*
   if (!$info = entity_get_info($entity_type)) {
     if(func_num_args() != 2){
         return "Missing Arguments! Please enter a valid entity type and number!";
@@ -52,5 +63,5 @@ function drush_replicate_drush_entity_by_id($entity_type, $id) {
     }
   }
   return "Missing Arguments! Please enter a valid entity type and number!";
-
+*/
 }
