@@ -27,7 +27,6 @@ function replicate_drush_command() {
 function drush_replicate_drush_help($command) {
   switch ($command) {
     case 'drush:replicate-drush-entity-by-id':
-
       return dt('This allows a user to replicate an entity by providing an entity type and id.');
   }
 }
@@ -44,11 +43,9 @@ function drush_replicate_drush_entity_by_id($entity_type, $id) {
   }
   if(func_num_args() == 2){
     $original = entity_load_single($entity_type, $id);
-
-  return drush_replicate_drush_entity($entity_type, $original);
+    return drush_replicate_drush_entity($entity_type, $original);
   }
   return "Missing Arguments! Please enter a valid entity type and number!";
-  
 }
 
 function drush_replicate_drush_entity($entity_type, $entity) {
