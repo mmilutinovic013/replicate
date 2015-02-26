@@ -43,8 +43,8 @@ function drush_replicate_drush_entity_by_id($entity_type, $id) {
   }
   if(func_num_args() == 2){
     $original = entity_load_single($entity_type, $id);
-    $clone = replicate_entity_by_id($entity_type, $id);
-    list($entity_id) = entity_extract_ids($entity_type, $clone);
+    $entity_id = replicate_entity_by_id($entity_type, $id);
+    //list($entity_id) = entity_extract_ids($entity_type, $clone);
       if (isset($entity_id)) {
         $returnvalue = "Congratulations your cloned " . $entity_type . " is " . $entity_type . " " . $entity_id;
 
