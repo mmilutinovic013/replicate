@@ -35,10 +35,10 @@ function drush_replicate_drush_help($command) {
 
 function drush_replicate_drush_entity_by_id($entity_type, $id) {
   if (!$entity_type || !$id) {
-    if(!$info = entity_get_info($entity_type) || !$id){
+    //if(!$info = entity_get_info($entity_type) || !$id){
          
          drush_print('Entity does not exist! Please enter a valid entity type and number!');
-    }
+   // }
     
     return FALSE;
   }
