@@ -43,7 +43,13 @@ function drush_replicate_drush_entity_by_id($entity_type, $id) {
   }
   if(func_num_args() == 2){
     $original = entity_load_single($entity_type, $id);
-    return replicate_entity_by_id($entity_type, $original);
+    $clone = replicate_entity_by_id($entity_type, $original);
+    list($entity_id) = entity_extract_ids($entity_type, $clone);
+      if (isset($entity_id)) {
+        $returnvalue = "Congratulations your cloned " . $entity_type . " is " . $entity_type . " " . $entity_id;
+
+        return drush_print($returnvalue);
+      }
 
   }
   return "Missing Arguments! Please enter a valid entity type and number!";
