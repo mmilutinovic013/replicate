@@ -26,9 +26,9 @@ function replicate_drush_command() {
 
 function drush_replicate_drush_help($command) {
   switch ($command) {
-    case 'drush:my-command':
+    case 'drush:replicate-drush-entity-by-id':
 
-      return dt('Run my command');
+      return dt('This allows a user to replicate an entity by providing an entity type and id.');
   }
 }
 
