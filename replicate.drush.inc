@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Implements hook_drush_command().
  */
@@ -23,14 +22,18 @@ function replicate_drush_command() {
 
   return $items;
 }
-
+/**
+ * Implements hook_drush_help().
+ */
 function replicate_drush_help($command) {
   switch ($command) {
     case 'drush:replicate-drush-entity-by-id':
       return dt('This allows a user to replicate an entity by providing an entity type and id.');
   }
 }
-
+/**
+ * Implements replicate_entity_by_id().
+ */
 function drush_replicate_drush_entity_by_id($entity_type = NULL, $id = NULL) {
   if (!is_null($entity_type) && !is_null($id) ){
     $entity_id = replicate_entity_by_id($entity_type, $id);
@@ -40,28 +43,4 @@ function drush_replicate_drush_entity_by_id($entity_type = NULL, $id = NULL) {
     }
   }
   return "Missing Arguments! Please enter a valid entity type and number!";
-
-
-/*
-  if (!$info = entity_get_info($entity_type)) {
-    if(func_num_args() != 2){
-        return "Missing Arguments! Please enter a valid entity type and number!";
-    }
-    else{
-      drush_print('Entity does not exist! Please enter a valid entity type and number!');
-      return FALSE;
-    }
-  }
-  if(func_num_args() == 2){
-    $entity_id = replicate_entity_by_id($entity_type, $id);
-    if (isset($entity_id)) {
-      $returnvalue = "Congratulations your cloned " . $entity_type . " is " . $entity_type . " " . $entity_id;
-      return drush_print($returnvalue);
-    }
-    else{
-        return "Missing Arguments! Please enter a valid entity type and number!";
-    }
-  }
-  return "Missing Arguments! Please enter a valid entity type and number!";
-*/
 }
