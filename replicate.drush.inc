@@ -5,7 +5,7 @@
 function replicate_drush_command() {
   $items = array();
   $items['replicate-drush-entity-by-id'] = array(
-    'description' => 'Replicate an Enitity via Drush!',
+    'description' => 'Replicate an Entity via Drush!',
     'arguments' => array(
       'entity-type' => dt('Type of Entity (eg. Node) that you wish to replicate'),
       'id-number' => dt('ID value of the specified Entity Type (eg. NodeID'),
@@ -35,12 +35,12 @@ function replicate_drush_help($command) {
  * Implements replicate_entity_by_id().
  */
 function drush_replicate_drush_entity_by_id($entity_type = NULL, $id = NULL) {
-  if (!is_null($entity_type) && !is_null($id) ){
+  if (!is_null($entity_type) && !is_null($id)){
     $entity_id = replicate_entity_by_id($entity_type, $id);
     if (isset($entity_id)) {
-      $returnvalue = "Congratulations your cloned " . $entity_type . " is " . $entity_type . " " . $entity_id;
+      $returnvalue = 'Congratulations your cloned ' . $entity_type . ' is ' . $entity_type . ' ' . $entity_id;
       return drush_print($returnvalue);
     }
   }
-  return "Missing Arguments! Please enter a valid entity type and number!";
+  return 'Missing Arguments! Please enter a valid entity type and number!';
 }
